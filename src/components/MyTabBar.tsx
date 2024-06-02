@@ -82,26 +82,7 @@ export default function MyTabBar({state, descriptors, navigation}: any) {
                     </View>
                   ) : route.name === 'Add' ? (
                     <View style={[styles.addbox]}>
-                      <View
-                        style={{
-                          height: '100%',
-                          width: 35,
-                          backgroundColor: 'lightblue',
-                          position: 'absolute',
-                          left: 0,
-                        }}
-                      />
-                      <View style={styles.plusbox}>
-                        <FontAwesome6 name="plus" size={24} color="black" />
-                      </View>
-                      <View
-                        style={{
-                          height: '100%',
-                          width: 35,
-                          position: 'absolute',
-                          right: 0,
-                        }}
-                      />
+                      <FontAwesome6 name="plus" size={24} color="black" />
                     </View>
                   ) : route.name === 'Notifications' ? (
                     <View style={styles.menubox}>
@@ -137,26 +118,7 @@ export default function MyTabBar({state, descriptors, navigation}: any) {
                     </View>
                   ) : route.name === 'Add' ? (
                     <View style={[styles.addbox]}>
-                      <View
-                        style={{
-                          height: '100%',
-                          width: 35,
-                          backgroundColor: 'lightblue',
-                          position: 'absolute',
-                          left: 0,
-                        }}
-                      />
-                      <View style={styles.plusbox}>
-                        <FontAwesome6 name="plus" size={24} color="black" />
-                      </View>
-                      <View
-                        style={{
-                          height: '100%',
-                          width: 35,
-                          position: 'absolute',
-                          right: 0,
-                        }}
-                      />
+                      <FontAwesome6 name="plus" size={26} color="purple" />
                     </View>
                   ) : route.name === 'Notifications' ? (
                     <View style={styles.menubox}>
@@ -210,28 +172,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   addbox: {
-    width: 70,
-    height: 30,
+    width: 45,
+    height: 45,
     marginBottom: 50,
-    borderRadius: 5,
+    borderRadius: 50,
+    borderWidth: 3,
+    borderColor: 'purple',
     flexDirection: 'row',
     justifyContent: 'center',
     position: 'relative',
     alignItems: 'center',
+    alignSelf: 'center',
     backgroundColor: 'white',
     overflow: 'hidden',
-  },
-  plusbox: {
-    justifyContent: 'center',
-    position: 'absolute',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    width: 65,
-    zIndex: 10,
-    height: '100%',
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomRightRadius: 10,
-    borderBottomLeftRadius: 10,
   },
 });
