@@ -78,11 +78,7 @@ export default function MyTabBar({state, descriptors, navigation}: any) {
                   </View>
                 ) : route.name === 'Discover' ? (
                   <View style={styles.menubox}>
-                    <Ionicons
-                      name="search-circle-sharp"
-                      size={24}
-                      color="purple"
-                    />
+                    <Entypo name="compass" size={24} color="purple" />
                     <Text style={[styles.menutxt, styles.menutxtActive]}>
                       {label}
                     </Text>
@@ -120,7 +116,7 @@ export default function MyTabBar({state, descriptors, navigation}: any) {
                   </View>
                 ) : route.name === 'Discover' ? (
                   <View style={styles.menubox}>
-                    <Feather name="map-pin" size={24} color="white" />
+                    <Entypo name="compass" size={24} color="white" />
                     <Text style={styles.menutxt}>{label}</Text>
                   </View>
                 ) : route.name === 'Add' ? (
