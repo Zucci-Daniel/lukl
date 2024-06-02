@@ -30,7 +30,11 @@ function Following({jumpTo, route}: Partial<any>) {
     () => httpService.get(`${URLS.FOLLOWING}`),
     {
       onSuccess: res => {
-        setVideoList([...res.data]);
+        const data: IVideo[] = res.data;
+        const onlyVideos = data.filter(file => {
+          return file.media.videoUrl.length > 0;
+        });
+        setVideoList([...onlyVideos]);
       },
     },
   );
@@ -41,14 +45,9 @@ function Following({jumpTo, route}: Partial<any>) {
       if (cell) {
         if (el.isViewable) {
           cell.callViewableIndex(el?.index);
-          if (el?.item.media.type === 'image') {
-            cell.startCountdown(el?.index, mediaRefs.current.length);
-            return;
-          }
           cell.playVideo(el?.index, mediaRefs.current.length);
         } else {
           cell.pauseVideo();
-          cell.stopCountdown();
         }
       }
     });
@@ -88,7 +87,6 @@ function Following({jumpTo, route}: Partial<any>) {
             setShowVideoTabs={setShowVideoTabs}
             flashListRef={flashListRef as any}
             video={item.media.videoUrl}
-            image={item.media.imageUrl}
             route={route}
             jumpTo={jumpTo}
           />

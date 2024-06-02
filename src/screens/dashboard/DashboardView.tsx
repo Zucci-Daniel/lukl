@@ -4,7 +4,6 @@ import VideoPlayer from '../../components/VideoPlayer';
 import LikeBox from '../../components/LikeBox';
 import {IVideo} from '../../types/video';
 import PostDetails from '../../components/PostDetails';
-import MusicDetails from '../../components/MusicDetails';
 import {FlashList} from '@shopify/flash-list';
 
 const windowHeight = Dimensions.get('window').height;
@@ -17,9 +16,7 @@ export default function DashboardView({
   setShowVideoTabs,
   video,
   flashListRef,
-  image,
   route,
-  jumpTo,
 }: {
   route: {key: string; title: string};
   jumpTo: (key: string) => void;
@@ -48,7 +45,6 @@ export default function DashboardView({
         setShowVideoTabs={setShowVideoTabs}
         route={route}
         video={video?.replace('http://', 'https://')}
-        image={image?.replace('http://', 'https://')}
         thumbnail={item?.media.previewUrl}
         postId={item?.id}
         flashListRef={flashListRef}
@@ -58,7 +54,6 @@ export default function DashboardView({
         }
       />
       {showVideoTabs && <PostDetails post={item as IVideo} />}
-      {/* <MusicDetails /> */}
     </View>
   );
 }

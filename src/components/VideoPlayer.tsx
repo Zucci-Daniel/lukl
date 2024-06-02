@@ -12,9 +12,6 @@ import {
   TouchableHighlight,
   View,
   ActivityIndicator,
-  Image,
-  NativeSyntheticEvent,
-  ImageLoadEventData,
 } from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 
@@ -28,7 +25,6 @@ export const VideoPlayer = forwardRef(
     {
       thumbnail,
       video,
-      image,
       loader,
       flashListRef,
     }: {flashListRef: {current: FlashList<any> | null}} & Partial<any>,
@@ -37,7 +33,6 @@ export const VideoPlayer = forwardRef(
     const {toggle} = useContext(RouteContext);
 
     const videoPlayerRef = useRef<any>(null);
-    const imageRef = useRef<any>(null);
     const timeoutRef = useRef<any>(null);
     const [pause, setPause] = useState(true);
     const [viewableIndex, setViewableIndex] = useState(0);
@@ -47,8 +42,6 @@ export const VideoPlayer = forwardRef(
 
     useImperativeHandle(parentRef, () => ({
       playVideo,
-      startCountdown,
-      stopCountdown,
       callViewableIndex,
       pauseVideo,
       unload,
@@ -79,23 +72,6 @@ export const VideoPlayer = forwardRef(
       }
     };
 
-    const startCountdown = (currentViewableIndex: number, length: number) => {
-      if (imageRef.current == null) {
-        return;
-      }
-
-      setViewableIndex(currentViewableIndex);
-      setArrLength(length);
-      if (currentViewableIndex < length - 1) {
-        timeoutRef.current = setTimeout(() => {
-          flashListRef?.current?.scrollToIndex({
-            index: currentViewableIndex + 1,
-            animated: true,
-          });
-        }, 10000);
-      }
-    };
-
     const pauseVideo = () => {
       if (videoPlayerRef.current == null) {
         return;
@@ -121,7 +97,6 @@ export const VideoPlayer = forwardRef(
         const unsubscribe = () => {
           setPause(true);
           pauseVideo();
-          stopCountdown();
         };
 
         return () => unsubscribe();
@@ -132,19 +107,6 @@ export const VideoPlayer = forwardRef(
       pauseVideo();
     }, [toggle]);
 
-    const onLoad = useCallback(
-      ({nativeEvent}: NativeSyntheticEvent<ImageLoadEventData>) => {
-        if (
-          nativeEvent.source &&
-          nativeEvent.source.width &&
-          nativeEvent.source.width > 0
-        ) {
-          setAspectRatio(nativeEvent.source.width / nativeEvent.source.height);
-        }
-        setReady(true);
-      },
-      [viewableIndex],
-    );
     return (
       <View
         style={[
@@ -173,51 +135,37 @@ export const VideoPlayer = forwardRef(
           onPress={() => {
             setPause(!pause);
           }}>
-          {video ? (
-            <Video
-              style={{
-                width: '100%',
-                height: undefined,
-                aspectRatio: aspectRatio,
-              }}
-              resizeMode={ResizeMode.COVER}
-              ref={videoPlayerRef}
-              source={{uri: video}}
-              volume={1}
-              muted={false}
-              onLoad={({naturalSize}) => {
-                if (naturalSize && naturalSize.width && naturalSize.width > 0) {
-                  setAspectRatio(naturalSize.width / naturalSize.height);
-                }
-                setReady(true);
-              }}
-              onEnd={() => {
-                videoPlayerRef.current.seek(0);
-                if (viewableIndex < arrLength) {
-                  flashListRef?.current?.scrollToIndex({
-                    index: viewableIndex + 1,
-                    animated: true,
-                  });
-                }
-              }}
-              poster={thumbnail}
-              onError={e => console.log('e', 'error loggg video')}
-              repeat={true}
-              paused={pause}
-            />
-          ) : (
-            <Image
-              ref={imageRef}
-              style={{
-                width: '100%',
-                height: undefined,
-                aspectRatio: aspectRatio,
-              }}
-              resizeMode="cover"
-              onLoad={onLoad}
-              source={{uri: image}}
-            />
-          )}
+          <Video
+            style={{
+              width: '100%',
+              height: undefined,
+              aspectRatio: aspectRatio,
+            }}
+            resizeMode={ResizeMode.COVER}
+            ref={videoPlayerRef}
+            source={{uri: video}}
+            volume={1}
+            muted={false}
+            onLoad={({naturalSize}) => {
+              if (naturalSize && naturalSize.width && naturalSize.width > 0) {
+                setAspectRatio(naturalSize.width / naturalSize.height);
+              }
+              setReady(true);
+            }}
+            onEnd={() => {
+              videoPlayerRef.current.seek(0);
+              if (viewableIndex < arrLength) {
+                flashListRef?.current?.scrollToIndex({
+                  index: viewableIndex + 1,
+                  animated: true,
+                });
+              }
+            }}
+            poster={thumbnail}
+            onError={e => console.log('e', 'error loggg video')}
+            repeat={true}
+            paused={pause}
+          />
         </TouchableHighlight>
       </View>
     );
