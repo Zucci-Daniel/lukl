@@ -58,33 +58,15 @@ export default function LikeBox({
           backgroundColor: palette.darkOpacity,
         },
       ]}>
-      <View style={styles.boxWithText}>
-        <TouchableOpacity
-          style={[
-            styles.imgbox,
-            {borderColor: 'white', borderWidth: avatarLoaded ? 0 : 1},
-          ]}
-          onPress={() => {}}>
-          <Image
-            source={{uri: item?.profilePhotoUrl}}
-            onLoad={() => setAvatarLoaded(true)}
-            style={styles.userIcon}
-          />
-        </TouchableOpacity>
-        {showFollow && (
-          <TouchableOpacity
-            onPress={follow_user}
-            style={[styles.followCircle, {backgroundColor: 'red'}]}>
-            {isFollowing ? (
-              <Fontisto name="check" size={7} color="white" />
-            ) : (
-              <Octicons name="plus" size={15} color={'white'} />
-            )}
-          </TouchableOpacity>
-        )}
-      </View>
       <TouchableOpacity style={styles.box} onPress={like_submit}>
-        {<AntDesign name="heart" size={35} color={isLiked ? 'red' : 'white'} />}
+        {
+          <AntDesign
+            name="heart"
+            size={35}
+            color={isLiked ? 'red' : 'white'}
+            style={styles.transparent}
+          />
+        }
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {}}
@@ -103,7 +85,12 @@ export default function LikeBox({
             },
           });
         }}>
-        <FontAwesome name="commenting" size={35} color="white" />
+        <FontAwesome
+          name="commenting"
+          size={35}
+          color="white"
+          style={styles.transparent}
+        />
         <Text style={[styles.text, {color: 'white'}]}>265k</Text>
       </TouchableOpacity>
       <TouchableOpacity
@@ -118,7 +105,12 @@ export default function LikeBox({
             },
           });
         }}>
-        <Entypo name="forward" size={35} color={'white'} />
+        <Entypo
+          name="forward"
+          size={35}
+          color={'white'}
+          style={styles.transparent}
+        />
         <Text style={[styles.text, {color: 'white'}]}>30.9k</Text>
       </TouchableOpacity>
     </View>
@@ -135,6 +127,9 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 50,
     alignItems: 'center',
+  },
+  transparent: {
+    opacity: 0.8,
   },
   imgbox: {
     marginTop: 5,
