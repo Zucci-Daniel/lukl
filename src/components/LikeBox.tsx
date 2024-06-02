@@ -88,7 +88,7 @@ export default function LikeBox({
       <TouchableOpacity
         onPress={() => {}}
         style={[styles.boxWithText, {height: undefined, marginBottom: 5}]}>
-        <Text style={[styles.text, {color: 'white'}]}>1.3M</Text>
+        <Text style={[styles.text, {color: 'white'}]}>265k</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.boxWithText}
@@ -108,7 +108,7 @@ export default function LikeBox({
           color="white"
           style={styles.transparent}
         />
-        <Text style={[styles.text, {color: 'white'}]}>10.5M</Text>
+        <Text style={[styles.text, {color: 'white'}]}>10.7M</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.boxWithText}
