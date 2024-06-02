@@ -120,7 +120,7 @@ export const VideoPlayer = forwardRef(
         {video && pause === true && (
           <FontAwesome5
             name="play"
-            size={50}
+            size={70}
             color={'white'}
             onPress={() => {
               setPause(!pause);
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
   play: {
     opacity: 0.66,
     position: 'absolute',
-    left: '45%',
+    left: '43%',
     top: '40%',
     zIndex: 5,
   },

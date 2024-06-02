@@ -53,7 +53,15 @@ export default function DashboardView({
           (mediaRefs.current[index as number] = VideoSingleRef)
         }
       />
-      {showVideoTabs && <PostDetails post={item as IVideo} />}
+      {showVideoTabs && (
+        <PostDetails
+          post={{
+            ...(item as IVideo),
+            caption:
+              "Don't know to finish this. #hashtag and #second How are you guys doing over there",
+          }}
+        />
+      )}
     </View>
   );
 }
