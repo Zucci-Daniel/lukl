@@ -58,7 +58,7 @@ export default function DashboardView({
         }
       />
       {showVideoTabs && <PostDetails post={item as IVideo} />}
-      <MusicDetails />
+      {/* <MusicDetails /> */}
     </View>
   );
 }
