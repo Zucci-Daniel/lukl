@@ -11,136 +11,144 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default function MyTabBar({state, descriptors, navigation}: any) {
   const showBottomBar = true;
   return (
-    <View style={{backgroundColor: 'black'}}>
+    <View
+      style={[
+        styles.container,
+        {
+          display: showBottomBar ? 'flex' : 'none',
+          backgroundColor: 'transparent',
+          bottom: 0,
+        },
+      ]}>
       <View
-        style={[
-          styles.container,
-          {
-            display: showBottomBar ? 'flex' : 'none',
-            backgroundColor: 'white',
-            bottom: 0,
-          },
-        ]}>
-        {state.routes.map((route: any, index: number) => {
-          const {options} = descriptors[route.key];
-          const label =
-            options.tabBarLabel !== undefined
-              ? options.tabBarLabel
-              : options.title !== undefined
-              ? options.title
-              : route.name;
+        style={{
+          backgroundColor: 'white',
+          opacity: 0.05,
+          width: '110%',
+          height: '150%',
+          position: 'absolute',
+          top: 0,
+        }}
+      />
+      {state.routes.map((route: any, index: number) => {
+        const {options} = descriptors[route.key];
+        const label =
+          options.tabBarLabel !== undefined
+            ? options.tabBarLabel
+            : options.title !== undefined
+            ? options.title
+            : route.name;
 
-          const isFocused = state.index === index;
+        const isFocused = state.index === index;
 
-          const onPress = () => {
-            const event = navigation.emit({
-              type: 'tabPress',
-              target: route.key,
-              canPreventDefault: true,
-            });
+        const onPress = () => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
+          });
 
-            if (!isFocused && !event.defaultPrevented) {
-              navigation.navigate(route.name, {});
-            }
-          };
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name, {});
+          }
+        };
 
-          const onLongPress = () => {
-            navigation.emit({
-              type: 'tabLongPress',
-              target: route.key,
-            });
-          };
-          return (
-            <TouchableOpacity
-              accessibilityRole="button"
-              accessibilityState={isFocused ? {selected: true} : {}}
-              accessibilityLabel={options.tabBarAccessibilityLabel}
-              testID={options.tabBarTestID}
-              onPress={onPress}
-              style={{width: '18%'}}
-              onLongPress={onLongPress}
-              key={index}>
-              {isFocused ? (
-                <>
-                  {route.name === 'Home' ? (
-                    <View style={styles.menubox}>
-                      <Entypo name="home" size={24} color="purple" />
-                      <Text style={[styles.menutxt, styles.menutxtActive]}>
-                        {label}
-                      </Text>
-                    </View>
-                  ) : route.name === 'Discover' ? (
-                    <View style={styles.menubox}>
-                      <Ionicons
-                        name="search-circle-sharp"
-                        size={24}
-                        color="purple"
-                      />
-                      <Text style={[styles.menutxt, styles.menutxtActive]}>
-                        {label}
-                      </Text>
-                    </View>
-                  ) : route.name === 'Add' ? (
-                    <View style={[styles.addbox]}>
-                      <FontAwesome6 name="plus" size={24} color="black" />
-                    </View>
-                  ) : route.name === 'Notifications' ? (
-                    <View style={styles.menubox}>
-                      <MaterialCommunityIcons
-                        name="bell-badge"
-                        size={24}
-                        color="purple"
-                      />
-                      <Text style={[styles.menutxt, styles.menutxtActive]}>
-                        {label}
-                      </Text>
-                    </View>
-                  ) : (
-                    <View style={styles.menubox}>
-                      <AntDesign name="message1" size={24} color="purple" />
-                      <Text style={[styles.menutxt, styles.menutxtActive]}>
-                        {label}
-                      </Text>
-                    </View>
-                  )}
-                </>
-              ) : (
-                <>
-                  {route.name === 'Home' ? (
-                    <View style={styles.menubox}>
-                      <Ionicons name="home-outline" size={24} color="black" />
-                      <Text style={styles.menutxt}>{label}</Text>
-                    </View>
-                  ) : route.name === 'Discover' ? (
-                    <View style={styles.menubox}>
-                      <Feather name="map-pin" size={24} color="black" />
-                      <Text style={styles.menutxt}>{label}</Text>
-                    </View>
-                  ) : route.name === 'Add' ? (
-                    <View style={[styles.addbox]}>
-                      <FontAwesome6 name="plus" size={26} color="purple" />
-                    </View>
-                  ) : route.name === 'Notifications' ? (
-                    <View style={styles.menubox}>
-                      <MaterialCommunityIcons
-                        name="bell-badge"
-                        size={24}
-                        color="black"
-                      />
-                      <Text style={styles.menutxt}>{label}</Text>
-                    </View>
-                  ) : (
-                    <View style={styles.menubox}>
-                      <AntDesign name="message1" size={24} color="black" />
-                      <Text style={styles.menutxt}>{label}</Text>
-                    </View>
-                  )}
-                </>
-              )}
-            </TouchableOpacity>
-          );
-        })}
-      </View>
+        const onLongPress = () => {
+          navigation.emit({
+            type: 'tabLongPress',
+            target: route.key,
+          });
+        };
+        return (
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityState={isFocused ? {selected: true} : {}}
+            accessibilityLabel={options.tabBarAccessibilityLabel}
+            testID={options.tabBarTestID}
+            onPress={onPress}
+            style={{width: '18%'}}
+            onLongPress={onLongPress}
+            key={index}>
+            {isFocused ? (
+              <>
+                {route.name === 'Home' ? (
+                  <View style={styles.menubox}>
+                    <Entypo name="home" size={24} color="purple" />
+                    <Text style={[styles.menutxt, styles.menutxtActive]}>
+                      {label}
+                    </Text>
+                  </View>
+                ) : route.name === 'Discover' ? (
+                  <View style={styles.menubox}>
+                    <Ionicons
+                      name="search-circle-sharp"
+                      size={24}
+                      color="purple"
+                    />
+                    <Text style={[styles.menutxt, styles.menutxtActive]}>
+                      {label}
+                    </Text>
+                  </View>
+                ) : route.name === 'Add' ? (
+                  <View style={[styles.addbox]}>
+                    <FontAwesome6 name="plus" size={24} color="black" />
+                  </View>
+                ) : route.name === 'Notifications' ? (
+                  <View style={styles.menubox}>
+                    <MaterialCommunityIcons
+                      name="bell-badge"
+                      size={24}
+                      color="purple"
+                    />
+                    <Text style={[styles.menutxt, styles.menutxtActive]}>
+                      {label}
+                    </Text>
+                  </View>
+                ) : (
+                  <View style={styles.menubox}>
+                    <AntDesign name="message1" size={24} color="purple" />
+                    <Text style={[styles.menutxt, styles.menutxtActive]}>
+                      {label}
+                    </Text>
+                  </View>
+                )}
+              </>
+            ) : (
+              <>
+                {route.name === 'Home' ? (
+                  <View style={styles.menubox}>
+                    <Ionicons name="home-outline" size={24} color="black" />
+                    <Text style={styles.menutxt}>{label}</Text>
+                  </View>
+                ) : route.name === 'Discover' ? (
+                  <View style={styles.menubox}>
+                    <Feather name="map-pin" size={24} color="black" />
+                    <Text style={styles.menutxt}>{label}</Text>
+                  </View>
+                ) : route.name === 'Add' ? (
+                  <View style={[styles.addbox]}>
+                    <FontAwesome6 name="plus" size={26} color="purple" />
+                  </View>
+                ) : route.name === 'Notifications' ? (
+                  <View style={styles.menubox}>
+                    <MaterialCommunityIcons
+                      name="bell-badge"
+                      size={24}
+                      color="black"
+                    />
+                    <Text style={styles.menutxt}>{label}</Text>
+                  </View>
+                ) : (
+                  <View style={styles.menubox}>
+                    <AntDesign name="message1" size={24} color="black" />
+                    <Text style={styles.menutxt}>{label}</Text>
+                  </View>
+                )}
+              </>
+            )}
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 }

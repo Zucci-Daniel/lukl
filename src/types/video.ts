@@ -1,7 +1,6 @@
 export interface IVideo {
   id: string;
   username: string;
-  type: 'video';
   caption: string;
   likes: number;
   comments: number;

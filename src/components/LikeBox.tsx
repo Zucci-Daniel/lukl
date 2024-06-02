@@ -3,6 +3,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Octicons from 'react-native-vector-icons/Octicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import FontAwesome6 from 'react-native-vector-icons/FontAwesome6';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useEffect, useState} from 'react';
 import useToast from '../hooks/useToast';
@@ -20,6 +21,7 @@ export default function LikeBox({
   const palette: any = {};
   const toast = useToast();
   const [isLiked, setIsLiked] = useState(false);
+  const [isCracked, setIsCracked] = useState(false);
   const [showFollow, setShowFollow] = useState(true);
   const [avatarLoaded, setAvatarLoaded] = useState(false);
   const [likesCount, setLikesCount] = useState(likes as number);
@@ -74,6 +76,21 @@ export default function LikeBox({
         <Text style={[styles.text, {color: 'white'}]}>1.3M</Text>
       </TouchableOpacity>
       <TouchableOpacity
+        style={styles.box}
+        onPress={() => setIsCracked(prev => !prev)}>
+        <FontAwesome6
+          name="heart-crack"
+          size={35}
+          color={isCracked ? 'red' : 'white'}
+          style={styles.transparent}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {}}
+        style={[styles.boxWithText, {height: undefined, marginBottom: 5}]}>
+        <Text style={[styles.text, {color: 'white'}]}>1.3M</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
         style={styles.boxWithText}
         onPress={() => {
           toast.show('my_success', {
@@ -91,7 +108,7 @@ export default function LikeBox({
           color="white"
           style={styles.transparent}
         />
-        <Text style={[styles.text, {color: 'white'}]}>265k</Text>
+        <Text style={[styles.text, {color: 'white'}]}>10.5M</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.boxWithText}

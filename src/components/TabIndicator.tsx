@@ -31,6 +31,13 @@ export default function TabIndicator({
             Following
           </Text>
         </TouchableOpacity>
+        <View
+          style={{
+            height: 18,
+            backgroundColor: '#ffffff80',
+            width: 2,
+          }}
+        />
         <TouchableOpacity
           onPress={() => {
             setToggle((prev: boolean) => !prev);
