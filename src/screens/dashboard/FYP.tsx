@@ -72,6 +72,7 @@ function Fyp({jumpTo, route}: {jumpTo: any; route: any}) {
         onViewableItemsChanged={onViewableItemsChanged.current}
         keyExtractor={(item, index) => item.id}
         decelerationRate={'normal'}
+        showsVerticalScrollIndicator={false}
         renderItem={({item, index}) => (
           <DashboardView
             item={item}

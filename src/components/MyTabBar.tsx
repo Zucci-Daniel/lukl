@@ -1,4 +1,11 @@
-import {View, Text, StyleSheet, Image, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  ImageBackground,
+} from 'react-native';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -11,25 +18,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 export default function MyTabBar({state, descriptors, navigation}: any) {
   const showBottomBar = true;
   return (
-    <View
+    <ImageBackground
       style={[
         styles.container,
         {
           display: showBottomBar ? 'flex' : 'none',
-          backgroundColor: 'transparent',
           bottom: 0,
         },
-      ]}>
-      <View
-        style={{
-          backgroundColor: 'white',
-          opacity: 0.05,
-          width: '110%',
-          height: '150%',
-          position: 'absolute',
-          top: 0,
-        }}
-      />
+      ]}
+      source={{uri: 'https://picsum.photos/400/200'}}
+      blurRadius={100}>
       {state.routes.map((route: any, index: number) => {
         const {options} = descriptors[route.key];
         const label =
@@ -91,7 +89,7 @@ export default function MyTabBar({state, descriptors, navigation}: any) {
                   </View>
                 ) : route.name === 'Add' ? (
                   <View style={[styles.addbox]}>
-                    <FontAwesome6 name="plus" size={24} color="black" />
+                    <FontAwesome6 name="plus" size={24} color="white" />
                   </View>
                 ) : route.name === 'Notifications' ? (
                   <View style={styles.menubox}>
@@ -117,12 +115,12 @@ export default function MyTabBar({state, descriptors, navigation}: any) {
               <>
                 {route.name === 'Home' ? (
                   <View style={styles.menubox}>
-                    <Ionicons name="home-outline" size={24} color="black" />
+                    <Ionicons name="home-outline" size={24} color="white" />
                     <Text style={styles.menutxt}>{label}</Text>
                   </View>
                 ) : route.name === 'Discover' ? (
                   <View style={styles.menubox}>
-                    <Feather name="map-pin" size={24} color="black" />
+                    <Feather name="map-pin" size={24} color="white" />
                     <Text style={styles.menutxt}>{label}</Text>
                   </View>
                 ) : route.name === 'Add' ? (
@@ -134,13 +132,13 @@ export default function MyTabBar({state, descriptors, navigation}: any) {
                     <MaterialCommunityIcons
                       name="bell-badge"
                       size={24}
-                      color="black"
+                      color="white"
                     />
                     <Text style={styles.menutxt}>{label}</Text>
                   </View>
                 ) : (
                   <View style={styles.menubox}>
-                    <AntDesign name="message1" size={24} color="black" />
+                    <AntDesign name="message1" size={24} color="white" />
                     <Text style={styles.menutxt}>{label}</Text>
                   </View>
                 )}
@@ -149,19 +147,20 @@ export default function MyTabBar({state, descriptors, navigation}: any) {
           </TouchableOpacity>
         );
       })}
-    </View>
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: '110%',
     height: 100,
     flexDirection: 'row',
     alignItems: 'center',
     paddingVertical: 10,
     justifyContent: 'space-between',
-    paddingHorizontal: '2.5%',
+    paddingRight: '10%',
+    position: 'relative',
   },
   menubox: {
     width: '100%',
@@ -170,7 +169,7 @@ const styles = StyleSheet.create({
   },
   menutxt: {
     fontSize: 11,
-    color: 'black',
+    color: 'white',
     textAlign: 'center',
   },
   menutxtActive: {
@@ -180,11 +179,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   addbox: {
-    width: 45,
-    height: 45,
-    marginBottom: 50,
+    width: 70,
+    height: 70,
+    marginBottom: 20,
     borderRadius: 50,
-    borderWidth: 3,
+    borderWidth: 7,
     borderColor: 'purple',
     flexDirection: 'row',
     justifyContent: 'center',

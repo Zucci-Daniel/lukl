@@ -77,6 +77,7 @@ function Following({jumpTo, route}: Partial<any>) {
         onViewableItemsChanged={onViewableItemsChanged.current}
         keyExtractor={(item, index) => item.id}
         decelerationRate={'normal'}
+        showsVerticalScrollIndicator={false}
         renderItem={({item, index}) => (
           <DashboardView
             item={item}
