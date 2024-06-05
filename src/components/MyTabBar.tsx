@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
+import * as React from 'react';
 
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';

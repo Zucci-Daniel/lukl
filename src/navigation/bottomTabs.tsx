@@ -1,7 +1,7 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {StyleSheet} from 'react-native';
-import Dashboard from '../screens/dashboard';
+import * as React from 'react';
 import MyTabBar from '../components/MyTabBar';
+import Dashboard from '../screens/dashboard';
 import EmptyScreen from '../screens/others/EmptyScreen';
 
 export type RootBottomTabParamList = {
@@ -60,10 +60,3 @@ export default function MyBottomTabs({}) {
     </RootBottomTab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  icon: {
-    width: 20,
-    height: 20,
-  },
-});
