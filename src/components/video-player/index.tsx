@@ -18,7 +18,7 @@ import {useFocusEffect} from '@react-navigation/native';
 import Video, {ResizeMode} from 'react-native-video';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {FlashList} from '@shopify/flash-list';
-import RouteContext from '../contexts/routecontext';
+import RouteContext from '../../contexts/routecontext';
 
 export const VideoPlayer = forwardRef(
   (

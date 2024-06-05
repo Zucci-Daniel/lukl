@@ -10,7 +10,7 @@ import httpService from '../../apis/http';
 import {URLS} from '../../apis/urls';
 import {IVideo} from '../../types/video';
 import {ActivityIndicator} from 'react-native';
-import TabIndicator from '../../components/TabIndicator';
+import Indicator from '../../components/indicator';
 
 const windowHeight = Dimensions.get('window').height;
 function Fyp({jumpTo, route}: {jumpTo: any; route: any}) {
@@ -60,7 +60,7 @@ function Fyp({jumpTo, route}: {jumpTo: any; route: any}) {
 
   return (
     <View style={[styles.container, {backgroundColor: palette.surface}]}>
-      <TabIndicator route={route} jumpTo={jumpTo} />
+      <Indicator route={route} to={jumpTo} />
       <FlashList
         ref={flashListRef}
         data={videoList}

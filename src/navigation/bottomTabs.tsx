@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import * as React from 'react';
-import MyTabBar from '../components/MyTabBar';
+import TabBar from '../components/tab-bar';
 import Dashboard from '../screens/dashboard';
 import EmptyScreen from '../screens/others/EmptyScreen';
 
@@ -16,7 +16,7 @@ const RootBottomTab = createBottomTabNavigator<RootBottomTabParamList>();
 
 export default function MyBottomTabs({}) {
   return (
-    <RootBottomTab.Navigator tabBar={props => <MyTabBar {...props} />}>
+    <RootBottomTab.Navigator tabBar={props => <TabBar {...props} />}>
       <RootBottomTab.Screen
         name="Home"
         component={Dashboard}
