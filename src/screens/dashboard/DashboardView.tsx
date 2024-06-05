@@ -1,9 +1,9 @@
 import {StyleSheet, View, Dimensions} from 'react-native';
 
-import VideoPlayer from '../../components/VideoPlayer';
-import LikeBox from '../../components/LikeBox';
+import VideoPlayer from '../../components/video-player';
+import LikeBox from '../../components/like-box';
 import {IVideo} from '../../types/video';
-import PostDetails from '../../components/PostDetails';
+import PostDetails from '../../components/post';
 import {FlashList} from '@shopify/flash-list';
 
 const windowHeight = Dimensions.get('window').height;

@@ -1,27 +1,25 @@
 import React, {useContext} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity, Image} from 'react-native';
-import RouteContext from '../contexts/routecontext';
+import {Image, Text, TouchableOpacity, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
-export default function TabIndicator({
+import RouteContext from '../../contexts/routecontext';
+import {styles} from './style';
+const avatar = 'https://picsum.photos/400';
+export default function Indicator({
   route,
-  jumpTo,
+  to,
 }: {
   route: {key: string; title: string};
-  jumpTo: (key: string) => void;
+  to: (key: string) => void;
 }) {
   const {setToggle} = useContext(RouteContext);
   return (
     <View style={styles.container}>
-      <Image
-        source={{uri: 'https://picsum.photos/400'}}
-        style={{width: 30, height: 30, borderRadius: 20}}
-      />
+      <Image source={{uri: avatar}} style={styles.containerWrapper} />
       <View style={styles.tabrow}>
         <TouchableOpacity
           onPress={() => {
             setToggle((prev: boolean) => !prev);
-            jumpTo('following');
+            to('following');
           }}>
           <Text
             style={[
@@ -41,7 +39,7 @@ export default function TabIndicator({
         <TouchableOpacity
           onPress={() => {
             setToggle((prev: boolean) => !prev);
-            jumpTo('fyp');
+            to('fyp');
           }}>
           <Text
             style={[
@@ -56,29 +54,3 @@ export default function TabIndicator({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    position: 'absolute',
-    zIndex: 10,
-    width: '100%',
-    height: 100,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 30,
-    top: 20,
-    paddingHorizontal: '2.5%',
-  },
-  tabrow: {
-    flexDirection: 'row',
-    flex: 1,
-    justifyContent: 'center',
-  },
-  text: {
-    fontSize: 18,
-    color: 'white',
-    paddingHorizontal: 5,
-    fontWeight: 'bold',
-  },
-});

@@ -1,14 +1,15 @@
-import React, {useRef, useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
   Animated,
   Dimensions,
   LayoutChangeEvent,
+  Text,
+  View,
 } from 'react-native';
+import {styles} from './style';
 
 const screenWidth = Dimensions.get('window').width;
+
 const Marquee = ({
   text,
   duration = 5000,
@@ -47,24 +48,5 @@ const Marquee = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    overflow: 'hidden',
-    height: 20,
-    justifyContent: 'center',
-  },
-  marqueeContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    position: 'absolute',
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 17,
-    color: 'white',
-  },
-});
 
 export default Marquee;
