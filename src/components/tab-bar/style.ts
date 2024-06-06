@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
   },
   menutxtActive: {
     fontSize: 10,
-    color: 'purple',
+    color: '#C13584',
     textAlign: 'center',
     fontWeight: 'bold',
   },
