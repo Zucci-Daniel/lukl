@@ -6,7 +6,7 @@ import axios, {
 
 // Create an axios instance with a base URL
 const httpService = axios.create({
-  baseURL: 'https://testapi-v1.onrender.com/api/feeds/',
+  baseURL: '', //BASE URL GOES IN HERE
 });
 
 // Request interceptor to set the appropriate Content-Type header
