@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {View, Image, Animated, Text, TouchableOpacity} from 'react-native';
 import {useRoute} from '@react-navigation/native';
+import React, {useEffect, useRef, useState} from 'react';
+import {Animated, Text, TouchableOpacity, View} from 'react-native';
 
 const EmptyScreen = ({}) => {
   const route = useRoute();

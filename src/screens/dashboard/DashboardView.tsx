@@ -1,10 +1,10 @@
-import {StyleSheet, View, Dimensions} from 'react-native';
-
-import VideoPlayer from '../../components/video-player';
-import LikeBox from '../../components/like-box';
-import {IVideo} from '../../types/video';
-import PostDetails from '../../components/post';
 import {FlashList} from '@shopify/flash-list';
+import * as React from 'react';
+import {Dimensions, StyleSheet, View} from 'react-native';
+import {IVideo} from '../../types/video';
+import LikeBox from '../../components/like-box';
+import VideoPlayer from '../../components/video-player';
+import PostDetails from '../../components/post';
 
 const windowHeight = Dimensions.get('window').height;
 

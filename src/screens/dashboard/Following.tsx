@@ -1,20 +1,18 @@
-import {
-  StyleSheet,
-  View,
-  Dimensions,
-  ActivityIndicator,
-  Platform,
-} from 'react-native';
 import {useFocusEffect} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
-
-import React, {useState, useCallback, useRef} from 'react';
-
-import {useQuery} from 'react-query';
+import {
+  ActivityIndicator,
+  Dimensions,
+  Platform,
+  StyleSheet,
+  View,
+} from 'react-native';
+import React, {useCallback, useRef, useState} from 'react';
 import DashboardView from './DashboardView';
-import httpService from '../../apis/http';
+import {useQuery} from 'react-query';
 import {URLS} from '../../apis/urls';
 import {IVideo} from '../../types/video';
+import httpService from '../../apis/http';
 import Indicator from '../../components/indicator';
 
 const windowHeight = Dimensions.get('window').height;

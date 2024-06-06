@@ -1,24 +1,10 @@
-import React, {
-  useContext,
-  useEffect,
-  useCallback,
-  useImperativeHandle,
-  forwardRef,
-  useRef,
-  useState,
-} from 'react';
-import {
-  StyleSheet,
-  TouchableHighlight,
-  View,
-  ActivityIndicator,
-} from 'react-native';
-import {useFocusEffect} from '@react-navigation/native';
-
-import Video, {ResizeMode} from 'react-native-video';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {FlashList} from '@shopify/flash-list';
-import RouteContext from '../../contexts/routecontext';
+import React, {forwardRef} from 'react';
+import {ActivityIndicator, TouchableHighlight, View} from 'react-native';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Video, {ResizeMode} from 'react-native-video';
+import {styles} from './style';
+import {useVideoPlayer} from './useVideoPlayer';
 
 export const VideoPlayer = forwardRef(
   (
@@ -30,83 +16,17 @@ export const VideoPlayer = forwardRef(
     }: {flashListRef: {current: FlashList<any> | null}} & Partial<any>,
     parentRef,
   ) => {
-    const {toggle} = useContext(RouteContext);
-
-    const videoPlayerRef = useRef<any>(null);
-    const timeoutRef = useRef<any>(null);
-    const [pause, setPause] = useState(true);
-    const [viewableIndex, setViewableIndex] = useState(0);
-    const [arrLength, setArrLength] = useState(0);
-    const [ready, setReady] = useState(false);
-    const [aspectRatio, setAspectRatio] = useState(1);
-
-    useImperativeHandle(parentRef, () => ({
-      playVideo,
-      callViewableIndex,
-      pauseVideo,
-      unload,
-    }));
-
-    const playVideo = (currentViewableIndex: number, length: number) => {
-      if (videoPlayerRef.current == null) {
-        return;
-      }
-      if (pause === false) {
-        return;
-      }
-      setViewableIndex(currentViewableIndex);
-      setArrLength(length);
-      setPause(false);
-    };
-
-    const callViewableIndex = (index: number) => {
-      if (videoPlayerRef.current == null) {
-        return;
-      }
-      setViewableIndex(index);
-    };
-
-    const stopCountdown = () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-
-    const pauseVideo = () => {
-      if (videoPlayerRef.current == null) {
-        return;
-      }
-      if (pause === true) {
-        return;
-      }
-      setPause(true);
-    };
-    const unload = () => {
-      if (videoPlayerRef.current == null) {
-        return;
-      }
-      if (pause === true) {
-        return;
-      }
-      videoPlayerRef.current.seek(0);
-      setPause(true);
-    };
-
-    useFocusEffect(
-      useCallback(() => {
-        const unsubscribe = () => {
-          setPause(true);
-          pauseVideo();
-        };
-
-        return () => unsubscribe();
-      }, []),
-    );
-
-    useEffect(() => {
-      pauseVideo();
-    }, [toggle]);
-
+    const {
+      pause,
+      setPause,
+      viewableIndex,
+      arrLength,
+      ready,
+      setReady,
+      aspectRatio,
+      setAspectRatio,
+      videoPlayerRef,
+    } = useVideoPlayer(parentRef);
     return (
       <View
         style={[
@@ -136,11 +56,7 @@ export const VideoPlayer = forwardRef(
             setPause(!pause);
           }}>
           <Video
-            style={{
-              width: '100%',
-              height: undefined,
-              aspectRatio: aspectRatio,
-            }}
+            style={{...styles.videoWrapper, aspectRatio: aspectRatio}}
             resizeMode={ResizeMode.COVER}
             ref={videoPlayerRef}
             source={{uri: video}}
@@ -162,7 +78,7 @@ export const VideoPlayer = forwardRef(
               }
             }}
             poster={thumbnail}
-            onError={e => console.log('e', 'error loggg video')}
+            onError={e => null}
             repeat={true}
             paused={pause}
           />
@@ -171,27 +87,5 @@ export const VideoPlayer = forwardRef(
     );
   },
 );
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    position: 'relative',
-    alignSelf: 'center',
-    justifyContent: 'center',
-  },
-  loader: {
-    position: 'absolute',
-    left: '43%',
-    zIndex: 10,
-    top: '40%',
-  },
-  play: {
-    opacity: 0.66,
-    position: 'absolute',
-    left: '43%',
-    top: '40%',
-    zIndex: 5,
-  },
-});
 
 export default React.memo(VideoPlayer);

@@ -1,16 +1,22 @@
 import * as React from 'react';
 import {Text, useWindowDimensions, View} from 'react-native';
-import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
+import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import Following from './Following';
 import Fyp from './FYP';
 import RouteContext from '../../contexts/routecontext';
 
+/**
+ * The issue seems to be with the type compatibility of the components used in SceneMap.
+ * To fix this, we can ensure that the components passed to SceneMap are compatible with the expected types.
+ */
+
+// Start of Selection
 const renderScene = SceneMap({
-  following: Following,
-  fyp: Fyp,
+  following: () => <Following />,
+  fyp: () => <Fyp jumpTo={''} route={null} />,
 });
 
-export default function Dashboard() {
+export default function DashboardWrapper() {
   const layout = useWindowDimensions();
   const {setToggle} = React.useContext(RouteContext);
 
