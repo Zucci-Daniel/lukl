@@ -1,17 +1,18 @@
 import {StyleSheet} from 'react-native';
+import {fs, wp} from '../../config';
 
 export const styles = StyleSheet.create({
-  containerWrapper: {width: 30, height: 30, borderRadius: 20},
+  containerWrapper: {width: wp(30), height: wp(30), borderRadius: wp(20)},
   container: {
     flexDirection: 'row',
     position: 'absolute',
     zIndex: 10,
     width: '100%',
-    height: 100,
+    height: wp(100),
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 30,
-    top: 20,
+    paddingVertical: wp(30),
+    top: wp(20),
     paddingHorizontal: '2.5%',
   },
   tabrow: {
@@ -20,9 +21,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   text: {
-    fontSize: 18,
+    fontSize: fs(18),
     color: 'white',
-    paddingHorizontal: 5,
+    paddingHorizontal: wp(5),
     fontWeight: 'bold',
   },
 });
