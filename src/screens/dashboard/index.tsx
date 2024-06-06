@@ -4,13 +4,9 @@ import {SceneMap, TabBar, TabView} from 'react-native-tab-view';
 import Following from './Following';
 import Fyp from './FYP';
 import RouteContext from '../../contexts/routecontext';
+import {styles} from './styles';
 
-/**
- * The issue seems to be with the type compatibility of the components used in SceneMap.
- * To fix this, we can ensure that the components passed to SceneMap are compatible with the expected types.
- */
-
-// Start of Selection
+// Define the renderScene function for the TabView
 const renderScene = SceneMap({
   following: () => <Following />,
   fyp: () => <Fyp jumpTo={''} route={null} />,
@@ -32,18 +28,8 @@ export default function DashboardWrapper() {
       getLabelText={({route}) => (
         <Text style={{color: 'white'}}>{route.title}</Text>
       )}
-      indicatorStyle={{
-        backgroundColor: '#ffffff00',
-        borderBottomWidth: 2,
-        borderBottomColor: '#ffffff00',
-      }}
-      style={{
-        backgroundColor: 'black',
-        display: 'none',
-        zIndex: 10,
-        top: 70,
-        left: 0,
-      }}
+      indicatorStyle={styles.tabBarView}
+      style={styles.barStyles}
     />
   );
 
@@ -57,7 +43,7 @@ export default function DashboardWrapper() {
       onSwipeEnd={() => setToggle((prev: boolean) => !prev)}
       lazy
       renderLazyPlaceholder={() => (
-        <View style={{backgroundColor: 'black', flex: 1}}></View>
+        <View style={{backgroundColor: 'black', flex: 1}} />
       )}
     />
   );

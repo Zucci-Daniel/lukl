@@ -14,4 +14,16 @@ export const styles = StyleSheet.create({
     zIndex: 6,
     marginTop: '2.5%',
   },
+  tabBarView: {
+    backgroundColor: '#ffffff00',
+    borderBottomWidth: 2,
+    borderBottomColor: '#ffffff00',
+  },
+  barStyles: {
+    backgroundColor: 'black',
+    display: 'none',
+    zIndex: 10,
+    top: 70,
+    left: 0,
+  },
 });

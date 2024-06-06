@@ -57,9 +57,9 @@ export const VideoPlayer = forwardRef(
           }}>
           <Video
             style={{...styles.videoWrapper, aspectRatio: aspectRatio}}
-            resizeMode={ResizeMode.COVER}
+            resizeMode={ResizeMode.CONTAIN}
             ref={videoPlayerRef}
-            source={{uri: video}}
+            source={video}
             volume={1}
             muted={false}
             onLoad={({naturalSize}) => {

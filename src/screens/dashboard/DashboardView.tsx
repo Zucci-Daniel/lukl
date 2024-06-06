@@ -43,7 +43,7 @@ export default function DashboardView({
         showVideoTabs={showVideoTabs}
         setShowVideoTabs={setShowVideoTabs}
         route={route}
-        video={video?.replace('http://', 'https://')}
+        video={video}
         thumbnail={item?.media.previewUrl}
         postId={item?.id}
         flashListRef={flashListRef}
