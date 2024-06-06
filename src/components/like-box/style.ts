@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import {wp} from '../../config';
 
 export const styles = StyleSheet.create({
   container: {
@@ -6,26 +7,26 @@ export const styles = StyleSheet.create({
     zIndex: 10,
     right: '2.5%',
     top: '35%',
-    paddingHorizontal: 5,
-    paddingVertical: 15,
-    borderRadius: 50,
+    paddingHorizontal: wp(5),
+    paddingVertical: wp(15),
+    borderRadius: wp(50),
     alignItems: 'center',
   },
   transparent: {
     opacity: 0.8,
   },
   boxWithText: {
-    marginTop: 10,
-    height: 46,
-    width: 46,
+    marginTop: wp(10),
+    height: wp(46),
+    width: wp(46),
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
   box: {
-    marginTop: 15,
-    height: 40,
-    width: 46,
+    marginTop: wp(15),
+    height: wp(40),
+    width: wp(46),
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',

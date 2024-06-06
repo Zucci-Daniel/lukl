@@ -1,11 +1,11 @@
 import {useFocusEffect} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import React, {useCallback, useRef, useState} from 'react';
-import {Dimensions, Platform, StyleSheet, View} from 'react-native';
+import {Dimensions, View} from 'react-native';
 import Indicator from '../../components/indicator';
 import {dummyData} from '../../data';
-import {IVideo} from '../../types/video';
 import DashboardView from './DashboardView';
+import {followingStyles} from './styles';
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -39,7 +39,7 @@ function Following({jumpTo, route}: Partial<any>) {
   );
 
   return (
-    <View style={[styles.container, {backgroundColor: 'black'}]}>
+    <View style={[followingStyles.container, {backgroundColor: 'black'}]}>
       <Indicator route={route} to={jumpTo} />
       <FlashList
         ref={flashListRef}
@@ -68,45 +68,8 @@ function Following({jumpTo, route}: Partial<any>) {
           />
         )}
       />
-      {/* {(isLoading || isFetching) && videoList.length === 0 && (
-        <ActivityIndicator size={50} style={styles.loader} color={'white'} />
-      )} */}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    position: 'relative',
-    width: '100%',
-    ...Platform.select({
-      ios: {
-        height: windowHeight,
-      },
-      android: {
-        height: windowHeight,
-      },
-    }),
-  },
-  communityBox: {
-    position: 'absolute',
-    right: '2.5%',
-    zIndex: 6,
-    top: '2.5%',
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  people: {
-    width: 25,
-    height: 25,
-  },
-  loader: {
-    position: 'absolute',
-    top: '40%',
-    left: '45%',
-  },
-});
 export default React.memo(Following);

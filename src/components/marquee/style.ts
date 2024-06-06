@@ -1,9 +1,10 @@
 import {StyleSheet} from 'react-native';
+import {fs, wp} from '../../config';
 
 export const styles = StyleSheet.create({
   container: {
     overflow: 'hidden',
-    height: 20,
+    height: wp(20),
     justifyContent: 'center',
   },
   marqueeContainer: {
@@ -13,7 +14,7 @@ export const styles = StyleSheet.create({
     position: 'absolute',
   },
   text: {
-    fontSize: 16,
+    fontSize: fs(16),
     lineHeight: 17,
     color: 'white',
   },
