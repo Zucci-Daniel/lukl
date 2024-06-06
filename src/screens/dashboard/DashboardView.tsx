@@ -1,12 +1,11 @@
 import {FlashList} from '@shopify/flash-list';
 import * as React from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
-import {IVideo} from '../../types/video';
+import {View} from 'react-native';
 import LikeBox from '../../components/like-box';
-import VideoPlayer from '../../components/video-player';
 import PostDetails from '../../components/post';
-
-const windowHeight = Dimensions.get('window').height;
+import VideoPlayer from '../../components/video-player';
+import {IVideo} from '../../types/video';
+import {styles} from './styles';
 
 export default function DashboardView({
   mediaRefs,
@@ -58,24 +57,10 @@ export default function DashboardView({
           post={{
             ...(item as IVideo),
             caption:
-              "Don't know to finish this. #hashtag and #second How are you guys doing over there",
+              'Exploring the beauty of Nollywood cinema. #Nollywood #CinemaLovers',
           }}
         />
       )}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    position: 'relative',
-    width: '100%',
-    height: windowHeight,
-  },
-  more: {
-    position: 'absolute',
-    right: '2.5%',
-    zIndex: 6,
-    marginTop: '2.5%',
-  },
-});
