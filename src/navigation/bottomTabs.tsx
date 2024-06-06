@@ -1,61 +1,39 @@
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import * as React from 'react';
+import {RootBottomTabParamListType} from './type';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import TabBar from '../components/tab-bar';
-import Dashboard from '../screens/dashboard';
+import DashboardWrapper from '../screens/dashboard';
 import EmptyScreen from '../screens/others/EmptyScreen';
+const RootBottomTab = createBottomTabNavigator<RootBottomTabParamListType>();
 
-export type RootBottomTabParamList = {
-  Home: undefined;
-  Discover: undefined;
-  Add: undefined;
-  Notifications: undefined;
-  Messages: undefined;
-};
-
-const RootBottomTab = createBottomTabNavigator<RootBottomTabParamList>();
-
+const generalOptions = {headerShown: false, tabBarShowLabel: false};
 export default function MyBottomTabs({}) {
   return (
-    <RootBottomTab.Navigator tabBar={props => <TabBar {...props} />}>
+    <RootBottomTab.Navigator tabBar={(props: any) => <TabBar {...props} />}>
       <RootBottomTab.Screen
-        name="Home"
-        component={Dashboard}
-        options={{
-          headerShown: false,
-          tabBarShowLabel: false,
-        }}
+        name={'Home'}
+        component={DashboardWrapper}
+        options={generalOptions}
       />
       <RootBottomTab.Screen
-        name="Discover"
+        name={'Discover'}
         component={EmptyScreen}
-        options={{
-          headerShown: false,
-          tabBarShowLabel: false,
-        }}
+        options={generalOptions}
       />
       <RootBottomTab.Screen
-        name="Add"
+        name={'Add'}
         component={EmptyScreen}
-        options={{
-          headerShown: false,
-          tabBarShowLabel: false,
-        }}
+        options={generalOptions}
       />
       <RootBottomTab.Screen
-        name="Notifications"
+        name={'Notifications'}
         component={EmptyScreen}
-        options={{
-          headerShown: false,
-          tabBarShowLabel: false,
-        }}
+        options={generalOptions}
       />
       <RootBottomTab.Screen
-        name="Messages"
+        name={'Messages'}
         component={EmptyScreen}
-        options={{
-          headerShown: false,
-          tabBarShowLabel: false,
-        }}
+        options={generalOptions}
       />
     </RootBottomTab.Navigator>
   );

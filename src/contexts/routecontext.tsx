@@ -1,9 +1,5 @@
 import React, {createContext, ReactNode, useContext, useState} from 'react';
-
-interface RouteContextType {
-  toggle: boolean;
-  setToggle: any;
-}
+import {RouteContextType} from './type';
 
 const defaultValue: RouteContextType = {
   toggle: false,

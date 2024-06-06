@@ -19,12 +19,11 @@ export default function Indicator({
         <TouchableOpacity
           onPress={() => {
             setToggle((prev: boolean) => !prev);
-            to('following');
           }}>
           <Text
             style={[
               styles.text,
-              {color: route.key === 'following' ? 'white' : '#ffffff60'},
+              {color: route?.key === 'following' ? 'white' : '#ffffff60'},
             ]}>
             Following
           </Text>
@@ -39,12 +38,11 @@ export default function Indicator({
         <TouchableOpacity
           onPress={() => {
             setToggle((prev: boolean) => !prev);
-            to('fyp');
           }}>
           <Text
             style={[
               styles.text,
-              {color: route.key === 'fyp' ? 'white' : '#ffffff80'},
+              {color: route?.key === 'fyp' ? 'white' : '#ffffff80'},
             ]}>
             LUK
           </Text>
