@@ -1,19 +1,11 @@
 import {useFocusEffect} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
-import {
-  ActivityIndicator,
-  Dimensions,
-  Platform,
-  StyleSheet,
-  View,
-} from 'react-native';
 import React, {useCallback, useRef, useState} from 'react';
-import DashboardView from './DashboardView';
-import {useQuery} from 'react-query';
-import {URLS} from '../../apis/urls';
-import {IVideo} from '../../types/video';
-import httpService from '../../apis/http';
+import {Dimensions, Platform, StyleSheet, View} from 'react-native';
 import Indicator from '../../components/indicator';
+import {dummyData} from '../../data';
+import {IVideo} from '../../types/video';
+import DashboardView from './DashboardView';
 
 const windowHeight = Dimensions.get('window').height;
 
@@ -21,21 +13,6 @@ function Following({jumpTo, route}: Partial<any>) {
   const mediaRefs = useRef([]);
   const flashListRef = useRef<any>(null);
   const [showVideoTabs, setShowVideoTabs] = useState(true);
-  const [videoList, setVideoList] = useState<IVideo[]>([]);
-
-  const {isLoading, isFetching, isRefetching} = useQuery(
-    `following`,
-    () => httpService.get(`${URLS.FOLLOWING}`),
-    {
-      onSuccess: res => {
-        const data: IVideo[] = res.data;
-        const onlyVideos = data.filter(file => {
-          return file.media.videoUrl.length > 0;
-        });
-        setVideoList([...onlyVideos]);
-      },
-    },
-  );
 
   const onViewableItemsChanged = useRef(({changed}: any) => {
     changed.forEach((el: any) => {
@@ -66,7 +43,7 @@ function Following({jumpTo, route}: Partial<any>) {
       <Indicator route={route} to={jumpTo} />
       <FlashList
         ref={flashListRef}
-        data={videoList}
+        data={dummyData}
         pagingEnabled={true}
         viewabilityConfig={{
           itemVisiblePercentThreshold: 90,
@@ -91,9 +68,9 @@ function Following({jumpTo, route}: Partial<any>) {
           />
         )}
       />
-      {(isLoading || isFetching) && videoList.length === 0 && (
+      {/* {(isLoading || isFetching) && videoList.length === 0 && (
         <ActivityIndicator size={50} style={styles.loader} color={'white'} />
-      )}
+      )} */}
     </View>
   );
 }
